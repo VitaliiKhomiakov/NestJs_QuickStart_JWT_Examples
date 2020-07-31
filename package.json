@@ -1,8 +1,8 @@
 {
-  "name": "start-project",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "name": "nestjs-login-registation-jwt-examples",
+  "version": "1.0",
+  "description": "Basic things for a quick start on NestJS",
+  "author": "Vitalii Khomiakov",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -81,5 +81,6 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
