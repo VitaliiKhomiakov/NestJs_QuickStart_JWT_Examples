@@ -28,8 +28,4 @@ export class AuthService {
       accessToken: this.jwtService.sign({ email: user.email, id: user.id }),
     };
   }
-
-  async register(user: UsersModel): Promise<UsersModel> {
-    return this.usersService.create(user);
-  }
 }

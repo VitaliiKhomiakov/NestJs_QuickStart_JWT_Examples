@@ -5,6 +5,9 @@ import {AuthService, Tokens} from '../../services/auth.service';
 import {UsersService} from '../../services/user.services';
 import {JoiValidationPipe} from '../../pipes/joi-validation.pipe';
 import {signUpSchema} from '../../pipes/schemas/auth.schemas';
+import {UsersModel} from "../../models/users.model";
+import {User} from "../../decorators/user.decorator";
+
 
 @Controller('auth')
 export class AuthController {
@@ -12,20 +15,20 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  login(@Body() body): Tokens {
-    return this.authService.login(body);
+  login(@User() user: UsersModel): Tokens {
+    return this.authService.login(user);
   }
 
   @UsePipes(new JoiValidationPipe(signUpSchema))
   @Post('sign-up')
-  async join(@Body() body): Promise<any> {
+  async signUp(@Body() body): Promise<UsersModel> {
     const {firstName, middleName, lastName, email, phone, password} = body;
 
     if (await this.usersService.findUser(email, phone)) {
       throw new HttpException('REGISTRATION.USER_ALREADY_REGISTERED', HttpStatus.BAD_REQUEST);
     }
 
-    return this.usersService.create({
+    return this.usersService.createUser({
       firstName, middleName, lastName, email, password: await bcrypt.hash(password, 10), phone,
     });
   }
