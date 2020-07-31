@@ -1,10 +1,10 @@
-export default {
+import {registerAs} from "@nestjs/config";
+export const CONF = registerAs('conf', () => ({
   type: 'mysql',
   host: 'localhost',
-  port: 3306,
-  username: 'name',
-  password: '900800',
-  database: 'database',
-  secret: '101010101***&*%^$qwerty',
-  signOptions: { expiresIn: '7d' }
-}
+  port: 1234,
+  username: 'username',
+  password: 'password',
+  databaseName: 'databaseName',
+  secret: 'secret',
+}));

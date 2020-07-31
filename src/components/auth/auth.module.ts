@@ -15,8 +15,8 @@ import {AuthMiddleware} from '../../middlewares/auth.middleware';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: CONF.secret,
-      signOptions: CONF.signOptions,
+      secret: CONF().secret,
+      signOptions: {expiresIn: '7d'},
     }),
     TypeOrmModule.forFeature([UsersEntity])
   ],
