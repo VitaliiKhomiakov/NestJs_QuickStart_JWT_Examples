@@ -1,7 +1,4 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {DailyMealsEntity} from './daily-meals.entity';
-import {FoodsEntity} from './foods.entity';
-import {RecipesEntity} from './recipes.entity';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity('users', { schema: 'fit' })
 export class UsersEntity {
@@ -28,13 +25,4 @@ export class UsersEntity {
 
   @Column('varchar', { name: 'password', length: 255 })
   password: string;
-
-  @OneToMany(() => DailyMealsEntity, (dailyMeals) => dailyMeals.user)
-  dailyMeals: DailyMealsEntity[];
-
-  @OneToMany(() => FoodsEntity, (foods) => foods.user)
-  foods: FoodsEntity[];
-
-  @OneToMany(() => RecipesEntity, (recipes) => recipes.user)
-  recipes: RecipesEntity[];
 }
